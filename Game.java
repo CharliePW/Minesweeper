@@ -11,7 +11,7 @@ public class Game {
             when flagging a 0, the other 0s still show...
             unflagging the flag
             integer validation for input
-
+            'You found 0 mines'
         */
 
         Scanner input = new Scanner(System.in);  
