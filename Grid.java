@@ -66,7 +66,9 @@ public class Grid {
         }
 
         if(node.getValue().equals("0")) {
-            isZero(node);
+            if(node.getIsFlagged() == false) {
+                isZero(node);
+            }
         }
         /*
         if(node.willFlag == true && node.getIsFlagged() == true) {

@@ -8,7 +8,6 @@ public class Game {
         /*
         Bugs to fix:
 
-            when flagging a 0, the other 0s still show...
             unflagging the flag
             integer validation for input
 
@@ -33,7 +32,9 @@ public class Game {
 
         Grid grid = new Grid(10,mode);
 
-        grid.displayGrid();
+        //grid.displayGrid();
+
+        System.out.println(grid.getGrid());
 
         while(grid.flagged.size() < grid.getBombs().size()) {
 
@@ -58,14 +59,16 @@ public class Game {
 
                         
             System.out.println("\nEnter an x coordinate: ");
-            int x = Integer.parseInt(input.nextLine());  
+            //int x = Integer.parseInt(input.nextLine());  
+            int x = input.nextInt();
             while(x > grid.getSize() || x < 1) {
                 System.out.println("Enter a number between 1 and " + grid.getSize() + ": ");
                 x = input.nextInt();  
             }
 
             System.out.println("\nEnter a y coordinate: ");
-            int y = Integer.parseInt(input.nextLine());  
+            //int y = Integer.parseInt(input.nextLine()); 
+            int y = input.nextInt(); 
             while(y > grid.getSize() || y < 1) {
                 System.out.println("Enter a number between 1 and " + grid.getSize() + ": ");
                 y = input.nextInt();  
