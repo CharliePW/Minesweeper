@@ -8,10 +8,10 @@ public class Grid {
     private ArrayList<Node> bombs = new ArrayList<>();
     private ArrayList<Node> nodes = new ArrayList<>();
     public ArrayList<Node> flagged = new ArrayList<>();
+    public ArrayList<Node> minesFound = new ArrayList<>();
     private String grid;
     private String mode;
     public int n_bombs;
-
 
     public Grid(int size, String mode) {
         this.size = size;
@@ -19,7 +19,7 @@ public class Grid {
         grid = generateGrid();
     }
 
-
+    public ArrayList<Node> getMinesFound() {return minesFound;}
     public String getMode() {return mode;}
     public String getGrid() {return grid;}
     public int getSize() {return size;}
@@ -48,33 +48,34 @@ public class Grid {
     public void check(Node node) {
 
         if(node.getIsHidden() == false ) {
-            /*if(node.willFlag == false) {
-                System.out.println("This node has already been revealed!");
-            }*/
             System.out.println("This node has already been revealed!");
+
         } else {
-            /*if(node.willFlag == true && node.getIsFlagged() == false) {
-                node.reveal();
-            } else if(node.willFlag == true && node.getIsFlagged() == true) {
+            if(node.willFlag == true && node.getIsFlagged() == false) {
                 node.setIsFlagged(true);
-            }*/
-            node.reveal();
+            } else if(node.willFlag == true && node.getIsFlagged() == true) {
+                node.setIsFlagged(false);
+                flagged.remove(node);
+                if(node.getValue().equals("B")) {
+                    minesFound.remove(node);
+                }
+                node.reveal();
+            } else if(node.willFlag == false && node.getIsHidden() == true) {
+                System.out.println("This node is hidden!");
+            } else {
+                node.reveal();
+            }
         }
 
         if(node.getValue().equals("B") && node.getIsFlagged() == false) {
             System.out.println("\nGame over!");
         }
 
-        if(node.getValue().equals("0")) {
+        if(node.getValue().equals("0") && node.getIsFlagged() == false) {
             if(node.getIsFlagged() == false) {
                 isZero(node);
             }
         }
-        /*
-        if(node.willFlag == true && node.getIsFlagged() == true) {
-            node.setIsFlagged(false);
-        }
-        */
     }
     
 

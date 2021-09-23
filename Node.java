@@ -1,5 +1,3 @@
-//import java.util.ArrayList;
-
 public class Node {
 
     private int x_coord;
@@ -33,8 +31,6 @@ public class Node {
     public Boolean getIsHidden() {return isHidden;}
 
     public void reveal() {
-        if(!isFlagged) {
-            isHidden = false;
-        }
+        isHidden = false;
     }
 }
